@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\shaders">
+      <UniqueIdentifier>{aec3ff60-0d2b-4bde-9295-b150b9060d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\dlls">
+      <UniqueIdentifier>{89becae9-112a-4785-9018-c2e882583917}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\other">
+      <UniqueIdentifier>{cfe1fac1-5e39-481d-b84e-eef160fb500f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\external">
+      <UniqueIdentifier>{1e80d691-297c-4487-a529-b4b47e3dbaa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\external">
+      <UniqueIdentifier>{f6531259-e1d4-4b18-a0a4-9b976b747336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\resource loading">
+      <UniqueIdentifier>{b3291306-2d35-4386-b133-1ef9fc8e143c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\resource loading">
+      <UniqueIdentifier>{b45b7a50-6bd4-4b1f-9468-06ae6455c40b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\physics">
+      <UniqueIdentifier>{2481ae9b-4bfc-4f2f-859e-8bd45916beb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\physics">
+      <UniqueIdentifier>{ac560b46-a02e-4299-bc56-e92ba0aebd26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\event system">
+      <UniqueIdentifier>{21dc982a-33b6-4f70-ac9c-e062b9bd46da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\event system">
+      <UniqueIdentifier>{c42f3849-6f07-4427-bcfe-28c831eb5c9e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SETTINGS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glew.h">
+      <Filter>Header Files\external</Filter>
+    </ClInclude>
+    <ClInclude Include="wglew.h">
+      <Filter>Header Files\external</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files\resource loading</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj2.h">
+      <Filter>Header Files\resource loading</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceGenerator.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Contact.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Links.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="TorqueGenerator.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision_coarse.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision_fine.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files\event system</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Header Files\event system</Filter>
+    </ClInclude>
+    <ClInclude Include="EventSubscriber.h">
+      <Filter>Header Files\event system</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\Fragment.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="shaders\Fragment2.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="shaders\FragmentUI.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="shaders\TextF.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="shaders\TextV.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="shaders\Vertex.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="shaders\Vertex2.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="shaders\VertexUI.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="libfreetype-6.dll">
+      <Filter>Resource Files\dlls</Filter>
+    </None>
+    <None Include="libjpeg-9.dll">
+      <Filter>Resource Files\dlls</Filter>
+    </None>
+    <None Include="libpng16-16.dll">
+      <Filter>Resource Files\dlls</Filter>
+    </None>
+    <None Include="libtiff-5.dll">
+      <Filter>Resource Files\dlls</Filter>
+    </None>
+    <None Include="libwebp-4.dll">
+      <Filter>Resource Files\dlls</Filter>
+    </None>
+    <None Include="SDL2_image.dll">
+      <Filter>Resource Files\dlls</Filter>
+    </None>
+    <None Include="SDL2_ttf.dll">
+      <Filter>Resource Files\dlls</Filter>
+    </None>
+    <None Include="zlib1.dll">
+      <Filter>Resource Files\dlls</Filter>
+    </None>
+    <None Include="shaders\vertexSpec.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="shaders\fragmentSpec.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glew.c">
+      <Filter>Source Files\external</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\resource loading</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj2.cpp">
+      <Filter>Source Files\resource loading</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="ForceGenerator.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Contact.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Links.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="TorqueGenerator.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision_coarse.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision_fine.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Source Files\event system</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Source Files\event system</Filter>
+    </ClCompile>
+    <ClCompile Include="EventSubscriber.cpp">
+      <Filter>Source Files\event system</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Holstein.DDS">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+    <Image Include="check.jpg">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+    <Image Include="baka.png">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+    <Image Include="font.png">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+    <Image Include="simple.png">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+    <Image Include="simple1.png">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+    <Image Include="simple2.png">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+    <Image Include="simple2-Recovered.png">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+    <Image Include="simple3.png">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+    <Image Include="simple4.png">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+    <Image Include="simple5.png">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+    <Image Include="white.png">
+      <Filter>Resource Files\other</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="cube_VT_VN.obj">
+      <Filter>Resource Files\other</Filter>
+    </Object>
+    <Object Include="cubeTri_VT_VN.obj">
+      <Filter>Resource Files\other</Filter>
+    </Object>
+    <Object Include="cylinder.obj">
+      <Filter>Resource Files\other</Filter>
+    </Object>
+    <Object Include="plane_VT_VN.obj">
+      <Filter>Resource Files\other</Filter>
+    </Object>
+    <Object Include="sphereUV.obj">
+      <Filter>Resource Files\other</Filter>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="ABEAKRG.TTF">
+      <Filter>Resource Files\other</Filter>
+    </Font>
+    <Font Include="OpenSans-Regular.ttf">
+      <Filter>Resource Files\other</Filter>
+    </Font>
+  </ItemGroup>
+</Project>
