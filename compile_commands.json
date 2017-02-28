@@ -1,0 +1,67 @@
+[
+    {
+        "command": "cc -c -std=gnu++11 -I ../ -I ../SDL2/include -I ../glm/glm -I ../glm/glm/gtc -I ../glm/glm/gtx -I ../SDL2_image -I ../bullet/src ../Main.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/Main.cpp"
+    },
+    {
+        "command": "cc -c -I ../ ../glew.c",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/glew.c"
+    },
+    {
+        "command": "cc -c -std=gnu++11 -I ../ -I ../SDL2/include -I ../glm/glm -I ../glm/glm/gtc -I ../glm/glm/gtx -I ../SDL2_image -I ../bullet/src ../Scene.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/Scene.cpp"
+    },
+    {
+        "command": "cc -c -std=gnu++11 -I ../ ../InputManager.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/InputManager.cpp"
+    },
+    {
+        "command": "cc -c -std=gnu++11 -I ../ ../EventSubscriber.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/EventSubscriber.cpp"
+    },
+    {
+        "command": "cc -c -std=gnu++11 -I ../ ../Event.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/Event.cpp"
+    },
+    {
+        "command": "cc -c -std=gnu++11 -I ../ ../EventHandler.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/EventHandler.cpp"
+    },
+    {
+        "command": "cc -c -std=gnu++11 -I ../ -I ../glm/glm -I ../glm/glm/gtc -I ../glm/glm/gtx -I ../SDL2/include -I ../SDL2_image -I ../bullet/src ../Component.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/Component.cpp"
+    },
+    {
+        "command": "cc -c -std=gnu++11 -I ../ -I ../glm/glm -I ../glm/glm/gtc -I ../glm/glm/gtx -I ../SDL2/include -I ../SDL2_image -I ../bullet/src ../GameObject.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/GameObject.cpp"
+    },
+    {
+        "command": "cc -c -std=gnu++11 -I ../ -I ../glm/glm -I ../glm/glm/gtc -I ../glm/glm/gtx -I ../SDL2/include -I ../SDL2_image -I ../bullet/src ../Light.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/Light.cpp"
+    },
+    {
+        "command": "cc -c -std=gnu++11 -I ../ -I ../glm/glm -I ../glm/glm/gtc -I ../glm/glm/gtx -I ../SDL2/include -I ../SDL2_image -I ../bullet/src ../Mesh.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/Mesh.cpp"
+    },
+    {
+        "command": "cc -c -std=gnu++11 -I ../ -I ../glm/glm -I ../glm/glm/gtc -I ../glm/glm/gtx -I ../SDL2/include -I ../SDL2_image -I ../bullet/src ../Obj2.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/Obj2.cpp"
+    },
+    {
+        "command": "cc -c -std=gnu++11 -I ../ ../ShaderManager.cpp",
+        "directory": "/home/kek-Engine_v2/build",
+        "file": "/home/kek-Engine_v2/ShaderManager.cpp"
+    }
+]

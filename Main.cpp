@@ -11,7 +11,6 @@
 #include "string"
 #include "thread"
 
-
 bool InitGL()
 {
 	glewExperimental = GL_TRUE;
@@ -35,7 +34,7 @@ bool InitGL()
 
 int main(int argc, char *argv[])
 {
-	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+	if( SDL_Init( /*SDL_INIT_VIDEO*/ SDL_INIT_EVERYTHING ) < 0 )
 	{
 		std::cout<<"Whoops! Something went very wrong, cannot initialise SDL :("<<std::endl;
 		return -1;
@@ -51,14 +50,15 @@ int main(int argc, char *argv[])
 	SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 3 );
 	SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
 
-	int winPosX = 100;
-	int winPosY = 100;
+	int winPosX = 0;
+	int winPosY = 0;
 	int winWidth = 800;
 	int winHeight = 600;
 	SDL_Window *window = SDL_CreateWindow("My Window!!!",  // The first parameter is the window title
-		winPosX, winPosY,
+		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 		winWidth, winHeight,
-		SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+		SDL_WINDOW_OPENGL | SDL_WINDOW_INPUT_GRABBED | SDL_WINDOW_SHOWN);//SDL_WINDOW_RESIZABLE
+
 	SDL_Surface *screen = SDL_GetWindowSurface(window);
 	SDL_Renderer * renderer = SDL_CreateRenderer( window, -1, 0 );
 	SDL_GLContext glcontext = SDL_GL_CreateContext( window );
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
 		//inputManager.update();//TODO move it to another thread so input is read in even if the game freezes
 		eventHandler.update();
 		myScene.Update( deltaTs);
-		glClearColor(1.0f,0.0f,0.0f,0.0f);
+		glClearColor(0.0f,0.0f,0.0f,0.0f);
 		myScene.Draw();
 		SDL_GL_SwapWindow( window );
 		//=================================

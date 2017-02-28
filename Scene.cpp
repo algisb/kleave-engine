@@ -227,43 +227,44 @@ void Scene::InputInit()
 void Scene::Update(float _deltaTs)
 {
 	deltaTs = _deltaTs;
-
+		
+	SDL_PumpEvents();
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	SDL_GetMouseState(&mX, &mY);
 	int dX = winWidth / 2 - mX;
 	int dY = winHeight / 2 - mY;
 	
-	//_mainCam->m_transform->m_localRotation.x += 10*(_deltaTs *(dY)*3.14159265358979323846 / 180.0f);
-	//_mainCam->m_transform->m_localRotation.y += 10*(_deltaTs *(dX)*3.14159265358979323846 / 180.0f);
+	_mainCam->m_transform->m_localRotation.x += 10*(_deltaTs *(dY)*3.14159265358979323846 / 180.0f);
+	_mainCam->m_transform->m_localRotation.y += 10*(_deltaTs *(dX)*3.14159265358979323846 / 180.0f);
+	//printf("x: %d  y: %d \n", mX, mY);
 
-
-	//SDL_WarpMouseInWindow(window, winWidth / 2, winHeight / 2);
+	SDL_WarpMouseInWindow(window, winWidth / 2, winHeight / 2);
 	/////=================================================
 
 	float moveSpeed = 10.0f;
 	
 
-	//if (state[SDL_SCANCODE_W])
-	//{
-	//	_mainCam->m_transform->m_localPosition += _deltaTs *  glm::normalize(_mainCam->m_cameraFront) *moveSpeed;
-	//}
+	if (state[SDL_SCANCODE_W])
+	{
+		//printf("W pressed \n");			
+		_mainCam->m_transform->m_localPosition += _deltaTs *  glm::normalize(_mainCam->m_cameraFront) *moveSpeed;
+	}
 
-	//if (state[SDL_SCANCODE_S])
-	//{
-	//	_mainCam->m_transform->m_localPosition -= _deltaTs * _mainCam->m_cameraFront *moveSpeed;
-	//}
+	if (state[SDL_SCANCODE_S])
+	{
+		_mainCam->m_transform->m_localPosition -= _deltaTs * _mainCam->m_cameraFront *moveSpeed;
+	}
 
-	//if (state[SDL_SCANCODE_D])
-	//{
-	//	glm::vec3 tempSide = glm::cross(UP, _mainCam->m_cameraFront);
-	//	_mainCam->m_transform->m_localPosition -= _deltaTs *tempSide*moveSpeed;
-	//}
-
-	//if (state[SDL_SCANCODE_A])
-	//{
-	//	glm::vec3 tempSide = glm::cross(UP, _mainCam->m_cameraFront);
-	//	_mainCam->m_transform->m_localPosition += _deltaTs *tempSide*moveSpeed;
-	//}
+	if (state[SDL_SCANCODE_D])
+	{
+		glm::vec3 tempSide = glm::cross(UP, _mainCam->m_cameraFront);
+		_mainCam->m_transform->m_localPosition -= _deltaTs *tempSide*moveSpeed;
+	}
+	if (state[SDL_SCANCODE_A])
+	{
+		glm::vec3 tempSide = glm::cross(UP, _mainCam->m_cameraFront);
+		_mainCam->m_transform->m_localPosition += _deltaTs *tempSide*moveSpeed;
+	}
 
 
 	if (state[SDL_SCANCODE_T])
