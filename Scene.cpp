@@ -57,9 +57,10 @@ Scene::Scene(SDL_Window *_window, int _winWidth, int _winHeight, InputManager * 
 	Transform * tr = tgo->getComponent<Transform>();
 	tr->m_localPosition = glm::vec3(0.0f, 5.0f, -15.0f);
 	tr->m_localRotation = glm::vec3(0.0f,180.0f,0.0f);
-	tgo->attachComponent(new Camera(tgo, "camera", glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 2000.0f)));
+	tgo->attachComponent(new Camera(tgo, "camera", glm::perspectiveFov<float>(45.0f,winWidth, winHeight, 0.1f, 2000.0f)));
 	_mainCam = tgo->getComponent<Camera>();
 	gameObjects.push_back(tgo);
+	
 
 	//light game objects
 	//==========================
@@ -240,7 +241,7 @@ void Scene::Update(float _deltaTs)
 
 	SDL_WarpMouseInWindow(window, winWidth / 2, winHeight / 2);
 	/////=================================================
-
+	
 	float moveSpeed = 10.0f;
 
 	if (state[SDL_SCANCODE_W])
