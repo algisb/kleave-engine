@@ -10,6 +10,7 @@
 #include "iostream"
 #include "string"
 #include "thread"
+#define BOB_BOB
 
 bool InitGL()
 {
@@ -52,8 +53,8 @@ int main(int argc, char *argv[])
 
 	int winPosX = 0;
 	int winPosY = 0;
-	int winWidth = 800;
-	int winHeight = 600;
+	int winWidth = 1920;
+	int winHeight = 1080;
 	SDL_Window *window = SDL_CreateWindow("My Window!!!",  // The first parameter is the window title
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 		winWidth, winHeight,

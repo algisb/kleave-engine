@@ -242,7 +242,6 @@ void Scene::Update(float _deltaTs)
 	/////=================================================
 
 	float moveSpeed = 10.0f;
-	
 
 	if (state[SDL_SCANCODE_W])
 	{
