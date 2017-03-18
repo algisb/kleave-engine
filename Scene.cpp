@@ -18,9 +18,7 @@ Scene::Scene(SDL_Window *_window, int _winWidth, int _winHeight, InputManager * 
 	LoadTexture("simple3.png", _texture3);
 	LoadTexture("simple4.png", _texture4);
 	LoadTexture("simple5.png", _texture5);
-	LoadTextureA("baka.png", _baka);
-	LoadTextureA("flame.png",_flame);
-	LoadTexture("cosmos.jpg",_sky);
+
 
 	///////////////physics engine initialisations/////////////
 	// Specify the dynamic AABB tree broadphase algorithm to be used to work out what objects

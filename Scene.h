@@ -71,7 +71,6 @@ protected:
 	Mesh _plane = Mesh("plane_VT_VN.obj", vertexTotal);
 	Mesh _cylinder = Mesh("cylinder.obj", vertexTotal);
 	Mesh _sphere = Mesh("sph.obj", vertexTotal);
-	Mesh _particle = Mesh("particle.obj",vertexTotal);
 	MeshLine _line;
 	MeshPoint _point;
 	MeshCircle _circle;
@@ -90,8 +89,7 @@ protected:
 	GLuint _texture3;
 	GLuint _texture4;
 	GLuint _texture5;
-	GLuint _flame;
-	GLuint _sky;
+
 
 	GLuint _baka;
 
