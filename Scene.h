@@ -13,22 +13,13 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
-//#include <SDL_ttf.h>
 #include <btBulletDynamicsCommon.h>
-
 #include "InputManager.h"
 #include "Mesh.h"
 #include "GameObject.h"
 #include "Component.h"
-//#include "Physics.h"
 #include "ShaderManager.h"
 #include "Light.h"
-#include "Contact.h"
-#include "Links.h"
-//#include "Collision_coarse.h"
-//#include "Collision_fine.h"
-#include "Animation.h"
-#include "ParticleSystem.h"
 #include "EventHandler.h"
 #define CAM_SPEED 10.0f
 

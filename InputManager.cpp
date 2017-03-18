@@ -28,7 +28,7 @@ void InputManager::update()
 			switch (incomingEvent.button.button)
 			{
 			case 1:
-				std::cout << "m1 up" << std::endl;
+				//std::cout << "m1 up" << std::endl;
 				break;
 			}
 			break;
@@ -37,14 +37,14 @@ void InputManager::update()
 			switch (incomingEvent.button.button)
 			{
 			case 1:
-				std::cout << "m1 down" << std::endl;
+				//std::cout << "m1 down" << std::endl;
 				break;
 			}
 			break;
 
 		//on key down
 		case SDL_KEYDOWN:
-			std::cout << "key down \n" << std::endl;
+			//std::cout << "key down \n" << std::endl;
 			switch (incomingEvent.key.keysym.sym)
 			{
 

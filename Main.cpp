@@ -1,6 +1,4 @@
 #include "SDL.h"
-//#include <SDL_image.h>
-//#include <SDL_ttf.h>
 
 #include "glew.h"
 #include "Scene.h"
@@ -86,7 +84,7 @@ int main(int argc, char *argv[])
 		float deltaTs = (float) (current - lastTime) / 1000.0f;
 		lastTime = current;
 		//=========THE GOODIES=============
-		//inputManager.update();//TODO move it to another thread so input is read in even if the game freezes
+		inputManager.update();//TODO move it to another thread so input is read in even if the game freezes
 		eventHandler.update();
 		myScene.Update( deltaTs);
 		glClearColor(0.0f,0.0f,0.0f,0.0f);

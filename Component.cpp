@@ -1,5 +1,4 @@
 #include "Component.h"
-#include "Physics.h"
 
 Component::Component(GameObject *_gameObject, string _tag)
 {
