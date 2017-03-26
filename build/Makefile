@@ -31,6 +31,9 @@ Obj2.o : ../Obj2.cpp
 
 ShaderManager.o : ../ShaderManager.cpp
 	$(CC) -c ../ShaderManager.cpp -I ../
+	
+Geo2D.o : ../Geo2D.cpp
+	$(CC) -c ../Geo2D.cpp -I ../ -I ../glm/glm -I ../glm/glm/gtc -I ../glm/glm/gtx
 
 #-------------------------------------------------------------
 
@@ -45,8 +48,8 @@ Main.o : ../Main.cpp
 
 
 #linking
-all: Main.o glew.o Scene.o  InputManager.o EventSubscriber.o Event.o EventHandler.o Component.o GameObject.o Light.o Mesh.o Obj2.o ShaderManager.o
-	$(CC) -o ../bin/kek-engine-v2 Main.o glew.o Scene.o InputManager.o EventSubscriber.o Event.o EventHandler.o Component.o GameObject.o Light.o Mesh.o Obj2.o ShaderManager.o -rdynamic -L ../bullet/src/BulletSoftBody -L ../bullet/src/BulletDynamics -L ../bullet/src/BulletCollision -L ../bullet/src/LinearMath -L ../SDL2_image/libs -Wl,-Bstatic -lBulletSoftBody -lBulletDynamics -lBulletCollision -lLinearMath -lSDL2_image -Wl,-Bdynamic -lSDL2 -lGL -lm -lstdc++
+all: Main.o glew.o Scene.o  InputManager.o EventSubscriber.o Event.o EventHandler.o Component.o GameObject.o Light.o Mesh.o Obj2.o ShaderManager.o Geo2D.o
+	$(CC) -o ../bin/kek-engine-v2 Main.o glew.o Scene.o InputManager.o EventSubscriber.o Event.o EventHandler.o Component.o GameObject.o Light.o Mesh.o Obj2.o ShaderManager.o Geo2D.o -rdynamic -L ../bullet/src/BulletSoftBody -L ../bullet/src/BulletDynamics -L ../bullet/src/BulletCollision -L ../bullet/src/LinearMath -L ../SDL2_image/libs -Wl,-Bstatic -lBulletSoftBody -lBulletDynamics -lBulletCollision -lLinearMath -lSDL2_image -Wl,-Bdynamic -lSDL2 -lGL -lm -lstdc++
 	#$(CC) -o softRend Main.o glew.o Scene.o InputManager.o EventSubscriber.o Event.o EventHandler.o Component.o GameObject.o Light.o Mesh.o Obj2.o ShaderManager.o ../SDL2libs/libSDL2.so -lm -lstdc++ -lGL
 
 clean:

@@ -70,12 +70,19 @@ public:
 class MeshRenderer : public Component
 {
 public:
+    enum
+    {
+        SOLID = 0,
+        WIRE
+    };
 	Mesh * m_mesh;
 	Transform * m_transform;
 	Material * m_material;
 	ShaderProgram * m_shaderProgram;
 
-	MeshRenderer(GameObject *_gameObject, string _tag, Mesh * _mesh, ShaderProgram * _shaderProgram);
+    int m_renderMode;
+    
+	MeshRenderer(GameObject *_gameObject, string _tag, Mesh * _mesh, ShaderProgram * _shaderProgram, int _renderMode);
 	~MeshRenderer();
 	void update();
 

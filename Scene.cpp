@@ -11,7 +11,17 @@ Scene::Scene(SDL_Window *_window, int _winWidth, int _winHeight, InputManager * 
 	this->winHeight = _winHeight;
 	this->inputManager = _inputManager;
 	this->eventHandler = _eventHandler;
-
+    /////////////////Meshes and textures////////////////////////
+    _cube       = new Mesh("cube_VT_VN.obj", vertexTotal);
+    _plane      = new Mesh("plane_VT_VN.obj", vertexTotal);
+    _cylinder   = new Mesh("cylinder.obj", vertexTotal);
+    _sphere     = new Mesh("sph.obj", vertexTotal);
+    
+    _navMesh    = new GenMesh();
+    _navMesh->addTri(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(10.0f, 10.0f, 10.0f), glm::vec3(5.0f, 20.0f, 10.0f));
+    _navMesh->addTri(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(10.0f, 10.0f, 10.0f), glm::vec3(5.0f, -20.0f, 10.0f));
+    _navMesh->gen();
+    
 	LoadTexture("simple.png", _texture);
 	LoadTexture("simple1.png", _texture1);
 	LoadTexture("simple2.png", _texture2);
@@ -58,16 +68,17 @@ Scene::Scene(SDL_Window *_window, int _winWidth, int _winHeight, InputManager * 
 	tgo->attachComponent(new Camera(tgo, "camera", glm::perspectiveFov<float>(45.0f,winWidth, winHeight, 0.1f, 2000.0f)));
 	_mainCam = tgo->getComponent<Camera>();
 	gameObjects.push_back(tgo);	
-
-	//light game objects
-	//==========================
+    
+    /////////////////////////////////////
+	//light game objects/////////////////
+    /////////////////////////////////////
 	tgo = new GameObject("pointLight");
 	tgo->attachComponent(new Transform(tgo, "transform", &_mainCam->m_viewMatrix, &_mainCam->m_projectionMatrix));
 	tr = tgo->getComponent<Transform>();
 	tr->m_localPosition = glm::vec3(20.0f, 10.0f, 20.0f);
 	tgo->attachComponent(new PointLight(tgo,"light",shaderProgram,&lightObjects,true, glm::vec3(0.0f,0.0f,0.0f),40.0f));
 	tgo->attachComponent(new Material(tgo, "material", &_texture1));
-	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", &_cube, shaderProgramSimple));
+	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", _cube, shaderProgramSimple, MeshRenderer::SOLID));
 	lightObjects.push_back(tgo->getComponent<Light>());
 	gameObjects.push_back(tgo);
 
@@ -77,29 +88,10 @@ Scene::Scene(SDL_Window *_window, int _winWidth, int _winHeight, InputManager * 
 	tr->m_localPosition = glm::vec3(-20.0f, 10.0f, 20.0f);
 	tgo->attachComponent(new PointLight(tgo, "light", shaderProgram, &lightObjects, true, glm::vec3(0.0f, 0.0f, 0.0f), 40.0f));
 	tgo->attachComponent(new Material(tgo, "material", &_texture1));
-	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", &_cube, shaderProgramSimple));
+	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", _cube, shaderProgramSimple, MeshRenderer::SOLID));
 	lightObjects.push_back(tgo->getComponent<Light>());
 	gameObjects.push_back(tgo);
-
-	tgo = new GameObject("pointLight3");
-	tgo->attachComponent(new Transform(tgo, "transform", &_mainCam->m_viewMatrix, &_mainCam->m_projectionMatrix));
-	tr = tgo->getComponent<Transform>();
-	tr->m_localPosition = glm::vec3(20.0f, 10.0f, -20.0f);
-	tgo->attachComponent(new PointLight(tgo, "light", shaderProgram, &lightObjects, true, glm::vec3(0.0f, 0.0f, 0.0f), 40.0f));
-	tgo->attachComponent(new Material(tgo, "material", &_texture1));
-	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", &_cube, shaderProgramSimple));
-	lightObjects.push_back(tgo->getComponent<Light>());
-	gameObjects.push_back(tgo);
-
-	tgo = new GameObject("pointLight4");
-	tgo->attachComponent(new Transform(tgo, "transform", &_mainCam->m_viewMatrix, &_mainCam->m_projectionMatrix));
-	tr = tgo->getComponent<Transform>();
-	tr->m_localPosition = glm::vec3(-20.0f, 10.0f, -20.0f);
-	tgo->attachComponent(new PointLight(tgo, "light", shaderProgram, &lightObjects, true, glm::vec3(0.0f, 0.0f, 0.0f), 40.0f));
-	tgo->attachComponent(new Material(tgo, "material", &_texture1));
-	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", &_cube, shaderProgramSimple));
-	lightObjects.push_back(tgo->getComponent<Light>());
-	gameObjects.push_back(tgo);
+    
 
 	tgo = new GameObject("directionalLight");
 	tgo->attachComponent(new Transform(tgo, "transform", &_mainCam->m_viewMatrix, &_mainCam->m_projectionMatrix));
@@ -108,10 +100,10 @@ Scene::Scene(SDL_Window *_window, int _winWidth, int _winHeight, InputManager * 
 	tgo->attachComponent(new DirectionalLight(tgo, "light", shaderProgram, &lightObjects, true, glm::vec3(0.0f, 0.0f, 0.0f), 0.4f,glm::vec3(1,1,1)));
 	lightObjects.push_back(tgo->getComponent<Light>());
 	gameObjects.push_back(tgo);
-
-	//game objects
-	//================================
-	//===
+    
+    /////////////////////////////////////////
+	//game objects///////////////////////////
+    /////////////////////////////////////////
 	tgo = new GameObject("cube0");
 	cube[0] = tgo;
 	tgo->attachComponent(new Transform(tgo, "transform", &_mainCam->m_viewMatrix, &_mainCam->m_projectionMatrix));
@@ -120,15 +112,13 @@ Scene::Scene(SDL_Window *_window, int _winWidth, int _winHeight, InputManager * 
 	tr->m_localRotation = glm::vec3(0.0f,0.0f,0.0f);
 	tr->m_localScale = glm::vec3(1.0f, 1.0f, 1.0f);
 
-	tgo->attachComponent(new Material(tgo, "material", &_texture));
-	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", &_cube, shaderProgram));
+	tgo->attachComponent(new Material(tgo, "material", &_texture3));
+	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", _cube, shaderProgramSimple, MeshRenderer::WIRE));
 	tgo->attachComponent(new PhysicsBt(tgo, "PhysicsEngineComponent", dynamicsWorld, new btBoxShape(btVector3(1.0f,1.0f,1.0f)), 1));
 	//carBody->getComponent<Particle>()->applyForce(glm::vec3(0.0f, 5000.0f, 0.0f));
 	gameObjects.push_back(tgo);
-	//btTriangleMeshShape
-	//===
-
-	//===
+    
+    /////////////////////////////////////////
 	tgo = new GameObject("cube1");
 	cube[1] = tgo;
 	tgo->attachComponent(new Transform(tgo, "transform", &_mainCam->m_viewMatrix, &_mainCam->m_projectionMatrix));
@@ -137,26 +127,41 @@ Scene::Scene(SDL_Window *_window, int _winWidth, int _winHeight, InputManager * 
 	tr->m_localScale = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	tgo->attachComponent(new Material(tgo, "material", &_texture));
-	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", &_cube, shaderProgram));
+	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", _cube, shaderProgram, MeshRenderer::SOLID));
 	tgo->attachComponent(new PhysicsBt(tgo, "PhysicsEngineComponent", dynamicsWorld, new btBoxShape(btVector3(1.0f, 1.0f, 1.0f)), 1));
 	//carBody->getComponent<Particle>()->applyForce(glm::vec3(0.0f, 5000.0f, 0.0f));
 	gameObjects.push_back(tgo);
-	//===
 
-	//===
+    //////////////////////////////////////////
 	tgo = new GameObject("cube2");
 	cube[2] = tgo;
 	tgo->attachComponent(new Transform(tgo, "transform", &_mainCam->m_viewMatrix, &_mainCam->m_projectionMatrix));
 	tr = tgo->getComponent<Transform>();
 	tr->m_localPosition = glm::vec3(0.0f, -1.0f, 4.0f);
-	tr->m_localScale = glm::vec3(20.0f, 1.0f, 20.0f);
+	tr->m_localScale = glm::vec3(30.0f, 0.2f, 30.0f);
 
 	tgo->attachComponent(new Material(tgo, "material", &_texture));
-	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", &_cube, shaderProgram));
-	tgo->attachComponent(new PhysicsBt(tgo, "PhysicsEngineComponent", dynamicsWorld, new btBoxShape(btVector3(20.0f, 1.0f, 20.0f)), 0));
+	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", _cube, shaderProgram, MeshRenderer::SOLID));
+	tgo->attachComponent(new PhysicsBt(tgo, "PhysicsEngineComponent", dynamicsWorld, new btBoxShape(btVector3(30.0f, 0.2f, 30.0f)), 0));
 	//carBody->getComponent<Particle>()->applyForce(glm::vec3(0.0f, 5000.0f, 0.0f));
 	gameObjects.push_back(tgo);
-	//===
+	
+    ///////////////////////////////////////////
+    
+    
+    tgo = new GameObject("nav mesh");
+	cube[3] = tgo;
+	tgo->attachComponent(new Transform(tgo, "transform", &_mainCam->m_viewMatrix, &_mainCam->m_projectionMatrix));
+	tr = tgo->getComponent<Transform>();
+	tr->m_localPosition = glm::vec3(5.0f, 10.0f, 4.0f);
+	tr->m_localScale = glm::vec3(1.0f, 1.0f, 1.0f);
+
+	tgo->attachComponent(new Material(tgo, "material", &_texture));
+	tgo->attachComponent(new MeshRenderer(tgo, "meshRenderer", _navMesh, shaderProgramSimple, MeshRenderer::WIRE));
+	tgo->attachComponent(new PhysicsBt(tgo, "PhysicsEngineComponent", dynamicsWorld, new btBoxShape(btVector3(1.0f, 1.0f, 1.0f)), 1));
+	//carBody->getComponent<Particle>()->applyForce(glm::vec3(0.0f, 5000.0f, 0.0f));
+	gameObjects.push_back(tgo);
+
 	
 
 	
@@ -165,6 +170,7 @@ Scene::Scene(SDL_Window *_window, int _winWidth, int _winHeight, InputManager * 
 
 Scene::~Scene()
 {
+    
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
 		for (int k = 0; k < gameObjects[i]->m_components.size(); k++)

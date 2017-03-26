@@ -93,13 +93,14 @@ void Material::update()
 {
 }
 
-MeshRenderer::MeshRenderer(GameObject *_gameObject, string _tag, Mesh * _mesh, ShaderProgram * _shaderProgram) : Component(_gameObject, _tag)
+MeshRenderer::MeshRenderer(GameObject *_gameObject, string _tag, Mesh * _mesh, ShaderProgram * _shaderProgram, int _renderMode) : Component(_gameObject, _tag)
 {
 	this->m_mesh = _mesh;
 	this->m_transform = _gameObject->getComponent<Transform>();
 	this->m_material = _gameObject->getComponent<Material>();
 
 	this->m_shaderProgram = _shaderProgram;
+    this->m_renderMode = _renderMode;
 }
 MeshRenderer::~MeshRenderer()
 {
@@ -121,8 +122,21 @@ void MeshRenderer::update()
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, *m_material->m_texture);
 		
-
-		m_mesh->Draw();
+        
+        switch(m_renderMode)
+        {
+            case SOLID:
+                glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+                break;
+            
+            case WIRE:
+                glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+                break;
+        }
+            glBindVertexArray( m_mesh->m_vao );
+            glDrawArrays(GL_TRIANGLES, 0, m_mesh->m_numVertices);
+            glBindVertexArray( 0 );
+		//m_mesh->Draw();
 
 	
 }

@@ -67,10 +67,12 @@ protected:
 	//cell which the mouse is hovered over
 
 	//models in scene
-	Mesh _cube = Mesh("cube_VT_VN.obj", vertexTotal);
-	Mesh _plane = Mesh("plane_VT_VN.obj", vertexTotal);
-	Mesh _cylinder = Mesh("cylinder.obj", vertexTotal);
-	Mesh _sphere = Mesh("sph.obj", vertexTotal);
+	Mesh * _cube;
+	Mesh * _plane;
+	Mesh * _cylinder; 
+	Mesh * _sphere;
+    GenMesh * _navMesh; 
+    
 	MeshLine _line;
 	MeshPoint _point;
 	MeshCircle _circle;

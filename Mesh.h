@@ -8,35 +8,44 @@
 #include "glew.h"
 #include "Obj2.h"
 #include "glm.hpp" // This is the main GLM header
-#include "gtc/matrix_transform.hpp" 
+#include "gtc/matrix_transform.hpp"
 
 class Mesh
 {
 public:
-	Mesh(char * fileName, unsigned int &totalVertex);
-	Mesh();
+	Mesh(char * _fileName, unsigned int &_totalVertex);
+    Mesh();
 	~Mesh();
 
-	virtual void Draw();
+	std::vector<glm::vec3> m_verticies;
 
-	std::vector<glm::vec3> vertices;
+	std::vector<glm::vec2> m_uvs;
 
-	std::vector<glm::vec2> uvs;
-
-	std::vector<glm::vec3> normals;
+	std::vector<glm::vec3> m_normals;
 
 
-	std::vector<glm::vec3> tangents;
+	std::vector<glm::vec3> m_tangents;
 
-	std::vector<glm::vec3> bitangents;
+	std::vector<glm::vec3> m_bitangents;
 
-	
-protected:
-	GLuint _VAO;
-	unsigned int _numVertices;
+    
+	GLuint m_vao;
+	unsigned int m_numVertices;
 
 
 	
+
+};
+
+
+
+class GenMesh : public Mesh
+{
+public:
+    GenMesh();
+    ~GenMesh();
+    void addTri(glm::vec3 _p0, glm::vec3 _p1, glm::vec3 _p2);
+    void gen();
 
 };
 

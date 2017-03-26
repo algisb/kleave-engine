@@ -1,63 +1,52 @@
 
 #include "Mesh.h"
 
-Mesh::Mesh(char * fileName, unsigned int &totalVertex)
+Mesh::Mesh(char * _fileName, unsigned int &_totalVertex)
 {
-	//SDL_Surface * tex = IMG_Load("cards/b1fv.png");
-	//if (!tex)
-	//{
-	//	printf("IMG_Load: %s\n", IMG_GetError());
-	//	// handle error
-	//}
-//==================================================
-	Obj2 obj2(fileName);
+	Obj2 obj2(_fileName);
 	obj2.loadAll();
-	//obj2.printAll();
 	obj2.convertVertexRTE();
-	//obj2.printVertexRTE();
 	obj2.convertVertexNormalRTE();
-	//obj2.printVertexNormalRTE();
 	obj2.convertVertexTextureRTE();
 	obj2.convertoObjToGlm();
 	obj2.computeTangentBasis();
-	if (obj2.v == true)
+	if (obj2.v)
 	{
-		_VAO = 0;
+		m_vao = 0;
 
-		glGenVertexArrays(1, &_VAO);
-		glBindVertexArray(_VAO);
+		glGenVertexArrays(1, &m_vao);
+		glBindVertexArray(m_vao);
 
-		_numVertices = obj2.VRTE.size() / 3;
+		m_numVertices = obj2.VRTE.size() / 3;
 
-		totalVertex = totalVertex + _numVertices;
+		_totalVertex = _totalVertex + m_numVertices;
 		GLuint buffer = 0;
 		glGenBuffers(1, &buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, buffer);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * _numVertices * 3, &obj2.VRTE[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_numVertices * 3, &obj2.VRTE[0], GL_STATIC_DRAW);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 		glEnableVertexAttribArray(0);
-
 	}
 
 
 	
-	if (obj2.vn == true)
+	if (obj2.vn)
 	{
 		GLuint normalBuffer = 0;
 		glGenBuffers(1, &normalBuffer);
 		glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * _numVertices * 3, &obj2.VNRTE[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_numVertices * 3, &obj2.VNRTE[0], GL_STATIC_DRAW);
 
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
 		glEnableVertexAttribArray(1);
 	}
 
-	if (obj2.vt == true)
+	if (obj2.vt)
 	{
 		GLuint texcoordBuffer = 0;
 		glGenBuffers(1, &texcoordBuffer);
 		glBindBuffer(GL_ARRAY_BUFFER, texcoordBuffer);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * _numVertices * 2, &obj2.VTRTE[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_numVertices * 2, &obj2.VTRTE[0], GL_STATIC_DRAW);
 
 		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0);
 		glEnableVertexAttribArray(2);
@@ -90,23 +79,49 @@ Mesh::Mesh(char * fileName, unsigned int &totalVertex)
 	glDisableVertexAttribArray(4);
 }
 
+Mesh::Mesh()
+{
+}
+
 Mesh::~Mesh()
 {
-	glDeleteVertexArrays( 1, &_VAO );
+	glDeleteVertexArrays( 1, &m_vao );
 }
 
-void Mesh::Draw()
+GenMesh::GenMesh()
 {
-		// Activate the VAO
-		glBindVertexArray( _VAO );
-
-			// Tell OpenGL to draw it
-			// Must specify the type of geometry to draw and the number of vertices
-			glDrawArrays(GL_TRIANGLES, 0, _numVertices);
-			
-		// Unbind VAO
-		glBindVertexArray( 0 );
 }
+
+GenMesh::~GenMesh()
+{
+}
+
+void GenMesh::addTri(glm::vec3 _p0, glm::vec3 _p1, glm::vec3 _p2)
+{
+    m_verticies.push_back(_p0);
+    m_verticies.push_back(_p1);
+    m_verticies.push_back(_p2);
+}
+
+void GenMesh::gen()
+{
+        m_vao = 0;
+
+		glGenVertexArrays(1, &m_vao);
+		glBindVertexArray(m_vao);
+        
+        m_numVertices = m_verticies.size();
+		GLuint buffer = 0;
+		glGenBuffers(1, &buffer);
+		glBindBuffer(GL_ARRAY_BUFFER, buffer);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * m_verticies.size(), &m_verticies[0], GL_STATIC_DRAW);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+		glEnableVertexAttribArray(0);
+        
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindVertexArray(0);
+}
+
 
 void MeshLine::Draw(glm::vec3 _p1, glm::vec3 _p2)
 {

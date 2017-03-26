@@ -1,5 +1,8 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x1a\x00k\x00e\x00k\x00-\x00e\x00n\x00g\x00i\x00n\x00e\x00-\x00v\x002)
+
 [CustomBuildSystem]
-CurrentConfiguration=BuildConfig1
+CurrentConfiguration=BuildConfig0
 
 [CustomBuildSystem][BuildConfig0]
 BuildDir=file:///root/projects/kek-engine-v2/build
@@ -96,6 +99,7 @@ Name=Clang
 5=/root/projects/kek-engine-v2/glm/glm
 6=/root/projects/kek-engine-v2/glm/glm/gtc
 7=/root/projects/kek-engine-v2/glm/glm/gtx
+8=/root/projects/kek-engine-v2/build
 
 [Launch]
 Launch Configurations=Launch Configuration 0
