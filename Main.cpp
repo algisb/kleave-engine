@@ -8,7 +8,6 @@
 #include "iostream"
 #include "string"
 #include "thread"
-#define BOB_BOB
 
 bool InitGL()
 {

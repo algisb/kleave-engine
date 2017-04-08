@@ -22,6 +22,7 @@ Scene::Scene(SDL_Window *_window, int _winWidth, int _winHeight, InputManager * 
     _navMesh->addTri(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(10.0f, 10.0f, 10.0f), glm::vec3(5.0f, -20.0f, 10.0f));
     _navMesh->gen();
     
+    
 	LoadTexture("simple.png", _texture);
 	LoadTexture("simple1.png", _texture1);
 	LoadTexture("simple2.png", _texture2);
@@ -161,10 +162,6 @@ Scene::Scene(SDL_Window *_window, int _winWidth, int _winHeight, InputManager * 
 	tgo->attachComponent(new PhysicsBt(tgo, "PhysicsEngineComponent", dynamicsWorld, new btBoxShape(btVector3(1.0f, 1.0f, 1.0f)), 1));
 	//carBody->getComponent<Particle>()->applyForce(glm::vec3(0.0f, 5000.0f, 0.0f));
 	gameObjects.push_back(tgo);
-
-	
-
-	
 
 }
 

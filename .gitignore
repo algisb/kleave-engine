@@ -1,2 +1,5 @@
 /cscope.out
 /CMakeLists.txt
+*.exe
+*.o
+/build/kek-engine-v2
